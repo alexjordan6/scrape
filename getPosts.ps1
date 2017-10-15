@@ -14,4 +14,4 @@ foreach($rawResult in $rawResults)
     $postCollection.Add($post)
 }
 
-$postCollection
+Write-Host $postCollection.ToString()
