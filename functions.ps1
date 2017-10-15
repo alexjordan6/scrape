@@ -3,7 +3,7 @@
 
 function getResultLinks($links)
 {
-    return ($links | Where-Object outerHTML -match "result-title").href
+    return ($links | Where-Object outerHTML -match "result-title")
 }
 
 function getPricedResults($links)
@@ -18,11 +18,11 @@ function getPrice($rawResult)
 
 function getDataId($rawResult){
     $hrefString = $rawResult.href 
-    $hrefSplit= = $hrefString.split("/")
-    $result = $hrefSplit[$hrefSplit.length-1]
-    $result = $result.substring(0,$result.lastindexof("."))
+    $hrefSplit = $hrefString.split("/")
+    $temp = $hrefSplit[$hrefSplit.length-1]
+    $dataId = $temp.substring(0,$temp.lastindexof("."))
 
-    return $result
+    return $dataId
 
 }
 

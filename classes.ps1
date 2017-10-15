@@ -8,7 +8,7 @@ class Post {
 class PostCollection {
 
     #internal hashtable that stores the Posts
-    hidden [System.Collections.Hashtable] $collection
+    hidden [System.Collections.Hashtable] $collection = [System.Collections.Hashtable]@{}
     
     [bool] Add([Post] $newPost){
         $this.collection.add($newPost.dataId,@{'href' = $newPost.href; 'price' = $newPost.price; 'title' = $newPost.title })
