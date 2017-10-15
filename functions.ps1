@@ -1,4 +1,6 @@
 . .\classes.ps1
+
+
 function getResultLinks($links)
 {
     return ($links | Where-Object outerHTML -match "result-title").href
@@ -9,12 +11,13 @@ function getPricedResults($links)
     return ($links | Where-Object outerHTML -match "result-price")
 }
 
-function getPrice($link)
+function getPrice($rawResult)
 {
-    return ([xml]$link.outerHTML).a.span.innerText
+    return ([xml]$rawResult.outerHTML).a.span.innerText
 }
 
-function getDataId($hrefString){
+function getDataId($rawResult){
+    $hrefString = $rawResult.href 
     $hrefSplit= = $hrefString.split("/")
     $result = $hrefSplit[$hrefSplit.length-1]
     $result = $result.substring(0,$result.lastindexof("."))
@@ -22,29 +25,18 @@ function getDataId($hrefString){
     return $result
 
 }
-function getResultsHashTable($rawLinks)
-{
-    $post = New-Object Post
-    $post.href = $rawLink.href
-    $post.dataId = getDataId -hrefString $post.href
-    $post.price = getPrice -link $rawLink
-    $post.title = "unknown"
-    $results = @{}
-    foreach ($rawLink in $rawLinkslinks)
-    {
-        $href = $rawLink.href
-        $DataId =getDataId($href)
-        $results.add($post.dataId,@{})
-    }
-}
+
 function getWebResponse($url) {
  
-
+    
     try {
-        $webResponse = Invoke-WebRequest $url -UseBasicParsing
+      $webResponse = Invoke-WebRequest $url -UseBasicParsing
     }
     catch {
         $_
+    }
+    finally {
+
     }
     return $webResponse
 }
