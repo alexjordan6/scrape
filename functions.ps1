@@ -8,6 +8,11 @@ function getPricedResults($links)
     return ($links | Where-Object outerHTML -match "result-price")
 }
 
+function getPrice($link)
+{
+    return ([xml]$link.outerHTML).a.span.innerText
+}
+
 function getWebResponse($url) {
  
 
