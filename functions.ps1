@@ -28,7 +28,8 @@ function getDataId($rawResult){
 
 function getWebResponse($url) {
  
-    
+    $webResponse = $null
+    $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
     try {
       $webResponse = Invoke-WebRequest $url -UseBasicParsing
     }
@@ -36,7 +37,9 @@ function getWebResponse($url) {
         $_
     }
     finally {
-
+        $stopwatch.stop()
+        $stopwatch.elapsed.totalmilliseconds
     }
     return $webResponse
+    
 }
