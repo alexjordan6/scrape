@@ -4,3 +4,14 @@ class Post {
     [string]$price
     [string]$title
 }
+
+class PostCollection {
+
+    #internal hashtable that stores the Posts
+    hidden [System.Collections.Hashtable] $collection
+    
+    [bool] Add([Post] $newPost){
+        $this.collection.add($newPost.dataId,@{'href' = $newPost.href; 'price' = $newPost.price; 'title' = $newPost.title })
+        return $true
+    }
+}

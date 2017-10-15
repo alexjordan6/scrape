@@ -1,3 +1,4 @@
+. .\classes.ps1
 function getResultLinks($links)
 {
     return ($links | Where-Object outerHTML -match "result-title").href
@@ -21,12 +22,17 @@ function getDataId($hrefString){
     return $result
 
 }
-function getResultsHashTable($links)
+function getResultsHashTable($rawLinks)
 {
+    $post = New-Object Post
+    $post.href = $rawLink.href
+    $post.dataId = getDataId -hrefString $post.href
+    $post.price = getPrice -link $rawLink
+    $post.title = "unknown"
     $results = @{}
-    foreach ($link in $links)
+    foreach ($rawLink in $rawLinkslinks)
     {
-        $href = $link.href
+        $href = $rawLink.href
         $DataId =getDataId($href)
         $results.add($DataId,@{"PageLink" = $href; })
     }
