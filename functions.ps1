@@ -34,7 +34,7 @@ function getResultsHashTable($rawLinks)
     {
         $href = $rawLink.href
         $DataId =getDataId($href)
-        $results.add($DataId,@{"PageLink" = $href; })
+        $results.add($post.dataId,@{})
     }
 }
 function getWebResponse($url) {
