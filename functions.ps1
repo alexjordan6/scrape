@@ -38,7 +38,7 @@ function getWebResponse($url) {
     }
     finally {
         $stopwatch.stop()
-        $stopwatch.elapsed.totalmilliseconds
+        Write-Host $stopwatch.elapsed.totalmilliseconds
     }
     return $webResponse
     
