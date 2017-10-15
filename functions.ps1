@@ -6,14 +6,18 @@ function getResultLinks($links)
     return ($links | Where-Object outerHTML -match "result-title")
 }
 
-function getPricedResults($links)
+function getPricedResults($rawResults)
 {
-    return ($links | Where-Object outerHTML -match "result-price")
+    return ($rawResults | Where-Object outerHTML -match "result-price")
 }
 
 function getPrice($rawResult)
 {
     return ([xml]$rawResult.outerHTML).a.span.innerText
+}
+
+function getTitle($rawResult){
+    
 }
 
 function getDataId($rawResult){

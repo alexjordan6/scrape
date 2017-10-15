@@ -1,7 +1,7 @@
 . .\functions.ps1
 $url = "https://madison.craigslist.org/d/atvs%2C-utvs%2C-snowmobiles/search/sna"
 $rawWebResponse = getWebResponse -url $url
-$rawResults = getResultLinks -links $rawWebResponse.links
+$rawResults = getPricedResults -rawResults $rawWebResponse.links
 $postCollection = [PostCollection]::new()
 foreach($rawResult in $rawResults)
 {
@@ -14,4 +14,4 @@ foreach($rawResult in $rawResults)
     $postCollection.Add($post)
 }
 
-Write-Host $postCollection.ToString()
+$postCollection.OutputPosts()

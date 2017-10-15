@@ -15,7 +15,16 @@ class PostCollection {
         return 
     }
 
-    [string] ToString(){
-        return ($this.collection.getEnumerator | out-string)
+    [void] OutputPosts(){
+        foreach($item in $this.collection.getEnumerator())
+        {
+            Write-Host $item.value.title
+            Write-Host "---" "$($item.Value.title)"
+            Write-Host "---" "$($item.Value.price)"
+            Write-Host "---" "$($item.Value.href)"
+           
+            
+        }
+        return
     }
 }
