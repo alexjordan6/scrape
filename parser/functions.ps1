@@ -1,3 +1,37 @@
+#scans the $inputString until it encounters a node matching $nodeName
+#returns the index of the starting point within the node
+function scanToNode {
+    [cmdletbinding()]
+    param (
+        [string]$nodeName,
+        [string]$inputString
+    )
+    begin{}
+    process{
+        for($i = 0; $i -lt  $inputString.Length; $i++){
+            $char = $inputString[$i]
+            if($char -ne "<")
+            {
+                continue
+            }
+            else{
+                $foundNode = ""
+                do {
+                    $foundNode += $char
+                    $i++
+                    $char = $inputString[$i] 
+                } until ($char -ne ">")
+                if ($foundNode -eq $nodeName)
+                {
+                    return $i + 1
+                }
+            }
+        }
+
+    }
+    end{}
+}
+
 #takes input string and returns the index for which the start of a row is
 function scanToRows{
     [cmdletbinding()]
@@ -50,7 +84,9 @@ function getNextRow{
     )
     begin{
     }
-    process{}
+    process{
+        
+    }
     end{}
 }
 function scan{
