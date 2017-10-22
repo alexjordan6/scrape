@@ -20,16 +20,7 @@ function getTitle($rawResult){
     
 }
 
-function getHTMLDocumentClass($webResp)
-{
-        # Create HTML file Object
-    $HTML = New-Object -Com "HTMLFile"
 
-    # Write HTML content according to DOM Level2 
-    $HTML.write($webResp.Content)
-
-    
-}
 function getDataId($rawResult){
     $hrefString = $rawResult.href 
     $hrefSplit = $hrefString.split("/")

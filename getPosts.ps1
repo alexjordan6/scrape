@@ -1,7 +1,11 @@
+#importing random functions
 . .\functions.ps1
+
+#import parser stuff
+. .\parser\import.ps1
 $url = "https://madison.craigslist.org/d/atvs%2C-utvs%2C-snowmobiles/search/sna"
 $rawWebResponse = getWebResponse -url $url
-$html = getHTMLDocumentClass -webResp $rawWebResponse
+$scanResult = scan -webResp $rawWebResponse
 
 $rawResults = getPricedResults -rawResults $rawWebResponse.links
 $postCollection = [PostCollection]::new()
